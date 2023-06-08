@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/kennycaty.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="java期末复习随缘笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaReview">
+<meta property="og:url" content="http://example.com/2023/06/08/JavaRe/index.html">
+<meta property="og:site_name" content="KennyCaty-啃泥猫-BLOG">
+<meta property="og:description" content="java期末复习随缘笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230606165029076.png">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230606165538084.png">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230608095036232.png">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230608095140531.png">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230608095230655.png">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230608095245820.png">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230608101945331.png">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230608103821483.png">
+<meta property="og:image" content="http://example.com/2023/06/08/JavaRe/image-20230608111254490.png">
+<meta property="article:published_time" content="2023-06-08T03:22:16.143Z">
+<meta property="article:modified_time" content="2023-06-08T03:22:16.144Z">
+<meta property="article:author" content="KennyCaty">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/06/08/JavaRe/image-20230606165029076.png">
+
+<link rel="canonical" href="http://example.com/2023/06/08/JavaRe/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaReview | KennyCaty-啃泥猫-BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">KennyCaty-啃泥猫-BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">在泥潭里摸爬滚打</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/08/JavaRe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/kennycaty.ico">
+      <meta itemprop="name" content="KennyCaty">
+      <meta itemprop="description" content="Hainan University of China">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KennyCaty-啃泥猫-BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaReview
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-08 11:22:16" itemprop="dateCreated datePublished" datetime="2023-06-08T11:22:16+08:00">2023-06-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E5%A4%8D%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">课程复习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>java期末复习随缘笔记</p>
+<span id="more"></span>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>[toc]</p>
+<h1 id="Chapter4-类与对象"><a href="#Chapter4-类与对象" class="headerlink" title="Chapter4 类与对象"></a>Chapter4 类与对象</h1><blockquote>
+<p>发展过程</p>
+</blockquote>
+<p>如C++、Java、C#等。指明了属性和操作行为的主 体，即对象，更符合人的思维模式。 </p>
+<p>面向对象语言的四个特性&#x3D;&#x3D;抽象，封装，继承，多态&#x3D;&#x3D;</p>
+<h2 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h2><blockquote>
+<p>对象</p>
+</blockquote>
+<p>万事万物都可看作对象，对象可以是具体的，如现 实世界中某个实实在在存在的实体；对象也可以是抽象的， 如一种信仰、一种思想。</p>
+<p>对象内部的性质从本质上可以分为两类：一类是对象的<strong>状态（属性）</strong>；一类是对象的<strong>行为（功能）</strong>。</p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><blockquote>
+<p>类</p>
+</blockquote>
+<p>面向对象程序计中一般不直接描述“对 象”，而是<strong>将具有相同或相似属性和行为的同一类对象抽象定 义成“类”</strong>，通过类实例化对象</p>
+<p><img src="/2023/06/08/JavaRe/image-20230606165029076.png" alt="image-20230606165029076"></p>
+<p>在Java中，根据类的来源不同，类可分为<strong>系统类</strong>和<strong>用户类</strong></p>
+<blockquote>
+<p>类的定义</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">public</span>] [<span class="keyword">abstract</span>] [<span class="keyword">final</span>] <span class="keyword">class</span> <span class="title class_">ClassName</span> [<span class="keyword">extends</span> <span class="title class_">SuperClassName</span>] [<span class="keyword">implements</span> <span class="title class_">InterFaceName</span>]&#123;</span><br><span class="line">ClassBody <span class="comment">//类体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>注意：</p>
+<ul>
+<li><p><strong>当一个源程序文件中有多个类的定义时，最多有一个类可以被声 明为public类</strong>，否则编译器会报错。所以，在编程时，应将不同的public类存放在不同的源程序文件中。</p>
+</li>
+<li><p><strong>各关键字的出现顺序是有严格要求的， 不可颠倒。</strong></p>
+</li>
+</ul>
+<blockquote>
+<p> 类的成员构成</p>
+</blockquote>
+<p><img src="/2023/06/08/JavaRe/image-20230606165538084.png" alt="image-20230606165538084"></p>
+<p><strong>成员变量</strong>（根据是否用static修饰可进一步分为：实例变量（声明时 不用static修饰）和静态变量（也称类变量，声明时用static修饰））</p>
+<p><strong>常量</strong>（一般用final static修饰，为静态常量；当然你也可以可以不用 static修饰，此时常量不是静态常量，不过一般不这么写）</p>
+<p><strong>方法</strong>（可分为：构造方法 和 成员方法 (根据是否用static修饰可进一步 分为，成员方法可进一步分为实例方法和静态方法(也称类方法))；方法 体中声明的变量称为<strong>局部变量</strong>）</p>
+<p>&#x3D;&#x3D;方法不能嵌套定义&#x3D;&#x3D;</p>
+<h3 id="数据域：成员变量和成员常量"><a href="#数据域：成员变量和成员常量" class="headerlink" title="数据域：成员变量和成员常量"></a>数据域：成员变量和成员常量</h3><p>数据域：在一个类中、在<strong>方法外面声明</strong>的变量（即成员常量）和常量 （即成员常量，用final static 修饰）组成该类的数据域。</p>
+<p><strong>在类中、方法外面只允许有变量和常量的声明语句（如有初始化， 必须和数据类型声明写成一个整 体），不允许有对变量和常量进行操作的语句</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">C</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;  <span class="comment">//正确</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    int a;</span></span><br><span class="line"><span class="comment">    a=1;        //错误</span></span><br><span class="line"><span class="comment">    */</span>    </span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>成员变量</strong>一经声明即使不初始化也有一个<strong>默认的初始值</strong>。</p>
+<p>基本数据类型默认值都是0，包括boolean-&gt;false<br>引用数据类型：null<br>null表示空，什么都没有，只是占位。</p>
+<ul>
+<li><p><strong>实例变量</strong>在所在类的静态方法中不能被直接访问，只能在该类的实 例方法和构造方法中可以直接访问；</p>
+</li>
+<li><p><strong>静态变量</strong>和常量可在所在类的 所有方法中直接访问。</p>
+</li>
+</ul>
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>方法体内部的变量称为局部变量，</p>
+<p>注意：&#x3D;&#x3D;局部变量没有默认初始值！！！&#x3D;&#x3D;，使用前必须先对其初始化</p>
+<p>局部变量的作用范围在其所在语句块（代码块） **{ }**之内</p>
+<p>在一个类中，成员变量（实例变量与静态变量）只能声明一次。但在方法内部不同的非嵌套语句块中，名称相同的局部变量可多次声明。</p>
+<p>如果一个局部变量或者形参和一成员变量具有相同的名称，那么<strong>局部变量和形参优先</strong>，同名的成员变量将被隐藏（强龙压不过地头蛇）。</p>
+<h2 id="构造方法与对象的创建"><a href="#构造方法与对象的创建" class="headerlink" title="构造方法与对象的创建"></a>构造方法与对象的创建</h2><h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">public</span>] ClassName(parameterLists)&#123;</span><br><span class="line">	StructuralMethodBody</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>构造方法没有返回值类型，不能加上void</p>
+<p>作用：初始化对象</p>
+<p>构造方法加不加public的区别：</p>
+<p>这个类都不是public的 也就是其他包没法访问你这个类 但你的构造方法却是public的 又让其他的包下的类可以创建你这个类的对象 明显就有矛盾 所以肯定会有问题，其次 构造方法加public主要是为了让其他包下的类去访问，如果在同一个包中 这个就没啥大区别了，毕竟默认修饰的话 是包级访问，包以外的没法访问 要访问需要加上public。</p>
+<blockquote>
+<p> 无参构造</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Point</span>&#123;</span><br><span class="line">    <span class="type">int</span> x, y;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Point</span><span class="params">()</span>&#123;</span><br><span class="line">        x = <span class="number">100</span>;</span><br><span class="line">        y = <span class="number">200</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Point</span>&#123;</span><br><span class="line">    <span class="type">int</span> x, y;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">getX</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">getY</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在定义类时，没有构造方法的定义也是可行的。此时，系统会为 其提供一个<strong>无参的默认构造方法</strong>，注意 ：只有当类中没有明确地 定义出一个构造方法时它才会自动生成。</p>
+<blockquote>
+<p> 有参构造</p>
+</blockquote>
+<p>注意如果使用了有参构造，则不会自动生成默认的无参构造，如需使用，比如自己写无参构造</p>
+<p>如果形参和成员变量冲突，需要用this区别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Point</span>&#123;</span><br><span class="line">    <span class="type">int</span> x, y;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Point</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.x = x;</span><br><span class="line">        <span class="built_in">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="对象实例化"><a href="#对象实例化" class="headerlink" title="对象实例化"></a>对象实例化</h3><blockquote>
+<p>声明-实例化-初始化</p>
+</blockquote>
+<ul>
+<li>对象的声明：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassName objectName[, objectName2...];</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>对象实例化：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> 构造方法;</span><br></pre></td></tr></table></figure>
+
+<p>说明：对象的实例化是通过调用类的构造方法来实现的，new 操作符用于为对象分配内存空间。</p>
+<ul>
+<li>对象的初始化：</li>
+</ul>
+<p>对象的通过类的构造方法实例化后，在内存里已经分配了相应的空间，为了便于访问，<strong>通常将对象在内存里地址赋给对象引用变量名完成对象引用变量的初始化，再借助对象引用变量来进行访问。</strong></p>
+<p>(1) 对象引用变量的初始化格式为： </p>
+<p>​	对象引用变量&#x3D;已创建的对象； </p>
+<p>(2) 在实际编程中，对象的实例化与对象引用变量的初始化通常 合在一起加以实现，即： </p>
+<p>​	对象引用变量&#x3D;new 构造方法</p>
+<p>(3) 或者将上面讲的对象引用变量的声明、对象的实例化与对象 引用变量的初始化合在一起一并实现，即： </p>
+<p>​		类名 对象引用变量&#x3D;new 构造方法;</p>
+<blockquote>
+<p> 匿名对象</p>
+</blockquote>
+<p>如果一个对象创建后并不需要引用，可以不把它明确赋给一个变量，</p>
+<p>如：new String(“hello”); 这样的对象称为匿名对象。</p>
+<h3 id="基本数据类型变量和引用类型变量的区别"><a href="#基本数据类型变量和引用类型变量的区别" class="headerlink" title="基本数据类型变量和引用类型变量的区别"></a>基本数据类型变量和引用类型变量的区别</h3><ul>
+<li>每个变量代表一个内存单元。</li>
+</ul>
+<p>对<strong>基本数据类型变量</strong>来说，对应内存所存储的值是<strong>基本数据类型的值</strong>；</p>
+<p>对<strong>引用类型变量</strong>来说，对应内存所存储的值是其引用的对象在<strong>内存中的存储地址</strong>。</p>
+<ul>
+<li>将一个变量赋给另一个变量时，另一个变量也有了同样的值。</li>
+</ul>
+<p>对 于<strong>基本数据类型变量</strong>，赋值是将一个变量的<strong>真实值</strong>赋给了另一个变量； </p>
+<p>对于<strong>引用类型变量</strong>，赋值是将一个变量所有些存储的引用对象的<strong>地址 赋给了另一个变量</strong>，赋值后这样<strong>两个变量指向了同一个对象。</strong></p>
+<h3 id="对象的清除"><a href="#对象的清除" class="headerlink" title="对象的清除"></a>对象的清除</h3><p>一是由系统“自动”清除，另一种则是由程序员 “手动”清除。</p>
+<p>Java中引入了先进的内存管理机制，也即人们常说的垃圾自动收 集功能。Java将不再使用的对象称为垃圾。垃圾自动收集器（置 于Java虚拟机JVM内部的一个功能模块）会根据变量的作用域确 定哪些变量不会再被使用，当它确定哪个变量不会再被使用时， 会自动将其清除。程序员需要变量时只管分配，而不需考虑何时 清除及如何清除，这对编程带来了极大的方便。</p>
+<p>“手动”清除即由程序员自行清除，这种情况只需为 对象引用变量赋一空值null即可。</p>
+<h2 id="参数传值"><a href="#参数传值" class="headerlink" title="参数传值"></a>参数传值</h2><ul>
+<li>将实参传递给方法：<ul>
+<li>调用方法时，传入的实参的类型、次序、数量必须与方 法定义中的形参的类型、次序、数量一致。</li>
+</ul>
+</li>
+<li>如果方法调用时所传<strong>实参是变量而不是直接量</strong>，则<strong>将实参变量的值传递给形参</strong></li>
+</ul>
+<p><strong>无论形参在方法体中的如何变化，实参变量的值并不改变</strong>（要理解透这句话）</p>
+<h2 id="实例变量和静态变量"><a href="#实例变量和静态变量" class="headerlink" title="实例变量和静态变量"></a>实例变量和静态变量</h2><ul>
+<li>实例变量 在类实例化对象时，将为所创建的对象（包括实例 变量）分配内存空间，<strong>实例变量存在于具体的对象空间之中</strong>，改 变了其中一个对象的实例变量值，对其余对象的实例变量值不会 造成影响。 </li>
+<li>静态变量也称为类变量，<strong>静态变量在类载入时为其分配空间</strong>， 创建对象时系统只为每个对象分配相应的实例变量空间，而不再 为静态变量分配空间，因此一个静态变量将为同一个类的所有对 象所共享，这也是将其称为类变量的原因。当改变了其中一个对 象的静态变量值时，其余对象的静态变量值也相应被改变。</li>
+</ul>
+<h2 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h2><p>方法重载：就是指在同一个类中，两个方法<strong>具有相同的名称但有 不同的参数列表</strong>（方法的参数类型、个数、顺序至少有一个不同， 注意我们这里不能根据参数的标识符是否相同来判断）。方法重 载时，两个方法的<strong>返回类型和修饰符可以相同，也可以不同</strong>。</p>
+<h1 id="Chapter9-GUI"><a href="#Chapter9-GUI" class="headerlink" title="Chapter9 GUI"></a>Chapter9 GUI</h1><p>本章主要介绍Java Swing</p>
+<h2 id="图形界面对象及其框架"><a href="#图形界面对象及其框架" class="headerlink" title="图形界面对象及其框架"></a>图形界面对象及其框架</h2><blockquote>
+<p>GUI类的三种类型</p>
+</blockquote>
+<ul>
+<li><p>容器类：用来盛装其他GUI组件，如 JFrame、JPanel 、JApplet等</p>
+</li>
+<li><p>辅助类：用来描述GUI组件的属性，如Graphics、 Color、Font、FontMetrics和Dimension等</p>
+</li>
+<li><p>组件类：JButton、JDialog、JComboBox、JList、 JRadioButton和JMenu类</p>
+</li>
+</ul>
+<p>层次结构图：</p>
+<p><img src="/2023/06/08/JavaRe/image-20230608095036232.png" alt="image-20230608095036232"></p>
+<p><img src="/2023/06/08/JavaRe/image-20230608095140531.png" alt="image-20230608095140531"></p>
+<p><img src="/2023/06/08/JavaRe/image-20230608095230655.png" alt="image-20230608095230655"></p>
+<p><img src="/2023/06/08/JavaRe/image-20230608095245820.png" alt="image-20230608095245820"></p>
+<h3 id="框架JFrame"><a href="#框架JFrame" class="headerlink" title="框架JFrame"></a>框架JFrame</h3><p>框架JFrame是Java GUI应用程序中用来盛装其它GUI 组件<strong>最顶层容器</strong>（不能置放在其它组件或容器之中），在 GUI程序设计中，常<strong>用JFrame来创建窗体。</strong></p>
+<blockquote>
+<p>JFram的构造方法和成员方法</p>
+</blockquote>
+<ul>
+<li>JFrame的构造方法<ul>
+<li>JFrame()</li>
+<li>JFrame(Srting title)     &#x2F;&#x2F;带标题的</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>常用成员方法</p>
+</blockquote>
+<ul>
+<li>public void setVisible(Boolean b)</li>
+</ul>
+<p>&#x2F;&#x2F;设置框架是否可见，框架<strong>默认情况下为不可见</strong> </p>
+<ul>
+<li>public void setSize(int width,int height)</li>
+</ul>
+<p>&#x2F;&#x2F;设置框架的大小  </p>
+<ul>
+<li>public void setLocation(x,y)</li>
+</ul>
+<p>&#x2F;&#x2F;设置框架在屏幕左上角的放置位置为（x,y）处，框架默认位置是（0,0）  </p>
+<ul>
+<li>public void setBounds(int x,int y,int width,int height)</li>
+</ul>
+<p>&#x2F;&#x2F;设置框架在屏幕上出现的初始位置（x,y）、宽和高为（width，height）  </p>
+<ul>
+<li>public void setResizable(boolean b)</li>
+</ul>
+<p>&#x2F;&#x2F;设置框架是否可调整大小，默认为可调整大小</p>
+<ul>
+<li>public void setDefaultCloseOperation (int Operation）</li>
+</ul>
+<p>&#x2F;&#x2F;设置单击框架右上角关闭图标后，根据其中参数进行相应处理。 </p>
+<p>其中Operation的有效值如下：</p>
+<p> (1) DO_NOTHING_ON_CLOSE &#x2F;&#x2F;什么也不做 </p>
+<p>(2) HIDE_ON_CLOSE &#x2F;&#x2F;隐藏当前框架</p>
+<p>(3) DISPOSE_ON_CLOSE &#x2F;&#x2F;隐藏当前框架，并释放框架所占的其他资源 </p>
+<p>(4) EXIT_ON_CLOSE &#x2F;&#x2F;结束框架所在的应用程序</p>
+<ul>
+<li>public setLocationRelativeTo(c:Componet)</li>
+</ul>
+<p>&#x2F;&#x2F;设置框架相对于特定组件的位置，如果组件为null，框架在屏幕中居中 显示，在JDK1.4（含）以上版本才有此特性</p>
+<blockquote>
+<p>创建并显示框架</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyFrame</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args&#123;</span></span><br><span class="line"><span class="params">		JFrame frame=new JFrame(“MyFrame<span class="string">&quot;);</span></span></span><br><span class="line"><span class="string"><span class="params">        //创建以MyFrame为标题的窗体</span></span></span><br><span class="line"><span class="string"><span class="params">        frame.setSize(400,300);</span></span></span><br><span class="line"><span class="string"><span class="params">        // 设置窗体的大小，窗口默认位置是（0,0）</span></span></span><br><span class="line"><span class="string"><span class="params">        frame.setLocationRelativeTo(null); </span></span></span><br><span class="line"><span class="string"><span class="params">        //让窗体居中</span></span></span><br><span class="line"><span class="string"><span class="params">        frame.setVisible(true);</span></span></span><br><span class="line"><span class="string"><span class="params">        // 设置窗体可见，如果不设置，窗体不可见</span></span></span><br><span class="line"><span class="string"><span class="params">        frame.setDefaultCloseOperation(frame. EXIT_ON_CLOSE);</span></span></span><br><span class="line"><span class="string"><span class="params">        //当框架关闭时结束程序。</span></span></span><br><span class="line"><span class="string"><span class="params">        //如果选择其他参数，框架关闭后，程序不会结束</span></span></span><br><span class="line"><span class="string"><span class="params">   &#125;</span></span></span><br><span class="line"><span class="string"><span class="params">&#125;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<blockquote>
+<p>添加组件</p>
+</blockquote>
+<p>在JDK1.5（含 ）版本以上，可直接将组件添加到框架对象中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame.add(new JButton(&quot;OK&quot;));</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><blockquote>
+<p>菜单</p>
+</blockquote>
+<p>Swing菜单广泛应用于各种窗体应用程序，以简单明了的指示说明。</p>
+<ul>
+<li>Java 提供了三种类型的菜单类<ul>
+<li>菜单栏类： JMenuBar（顶层菜单容器，用于组织菜单对 象）</li>
+<li>菜单：JMenu（菜单项容器，用于组织菜单项及其子菜单， 然后置于菜单栏对象中）</li>
+<li>菜单项：JMenuItem（置于菜单对象之中）</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/06/08/JavaRe/image-20230608101945331.png" alt="image-20230608101945331"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span>&#123;</span><br><span class="line">    <span class="comment">//定义组件</span></span><br><span class="line">    <span class="type">JMenuBar</span> <span class="variable">menuBar</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JMenuBar</span>(); <span class="comment">//创建菜单栏</span></span><br><span class="line">    JMenu m1,m2,m3,m4;</span><br><span class="line">    JMenuItem i1,i2,i3,i4;</span><br><span class="line">    JMenu mm1,mm2,mm3,mm4;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Test</span><span class="params">()</span>&#123;</span><br><span class="line">        m1 = <span class="keyword">new</span> <span class="title class_">JMenu</span>(<span class="string">&quot;文件1&quot;</span>);</span><br><span class="line">        m2 = <span class="keyword">new</span> <span class="title class_">JMenu</span>(<span class="string">&quot;文件2&quot;</span>);</span><br><span class="line">        m3 = <span class="keyword">new</span> <span class="title class_">JMenu</span>(<span class="string">&quot;文件3&quot;</span>);</span><br><span class="line">        m4 = <span class="keyword">new</span> <span class="title class_">JMenu</span>(<span class="string">&quot;文件4&quot;</span>);</span><br><span class="line">        i1 = <span class="keyword">new</span> <span class="title class_">JMenuItem</span>(<span class="string">&quot;文档1&quot;</span>);</span><br><span class="line">        i2 = <span class="keyword">new</span> <span class="title class_">JMenuItem</span>(<span class="string">&quot;文档2&quot;</span>);</span><br><span class="line">        i3 = <span class="keyword">new</span> <span class="title class_">JMenuItem</span>(<span class="string">&quot;文档3&quot;</span>);</span><br><span class="line">        i4 = <span class="keyword">new</span> <span class="title class_">JMenuItem</span>(<span class="string">&quot;文档4&quot;</span>);</span><br><span class="line">        m1.add(i1);</span><br><span class="line">        m1.add(i2);</span><br><span class="line">        m1.add(i3);</span><br><span class="line">        m1.add(i4);</span><br><span class="line">        menuBar.add(m1);</span><br><span class="line">        menuBar.add(m2);</span><br><span class="line">        menuBar.add(m3);</span><br><span class="line">        menuBar.add(m4);</span><br><span class="line">        <span class="built_in">this</span>.add(menuBar,BorderLayout.NORTH);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.setBounds(<span class="number">200</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">250</span>);</span><br><span class="line">        <span class="built_in">this</span>.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">        <span class="built_in">this</span>.setVisible(<span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Test</span> <span class="variable">t</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2023/06/08/JavaRe/image-20230608103821483.png" alt="image-20230608103821483"></p>
+<blockquote>
+<p>JMenuItem常用构造方法</p>
+</blockquote>
+<ol>
+<li>public JMenuItem() 使用空构造一个菜单项对象</li>
+<li>public JMenuItem(Action a) 创建一个支持Action的菜单项对象 </li>
+<li>public JMenuItem(String text)  使用指定的文本作为菜单项名称创建一个菜单项对象  </li>
+<li>public JMenuItem(Icon icon) 创建一个指定图标的菜单项对象 </li>
+<li>public JMenuItem(String text，Icon icon)  创建一个指定文本和图标的菜单项对象 </li>
+<li>public JMenuItem(String text，int mnemonic)  创建一个指定文本和键盘设置快捷的菜单项对</li>
+</ol>
+<h2 id="图形界面常用组件"><a href="#图形界面常用组件" class="headerlink" title="图形界面常用组件"></a>图形界面常用组件</h2><h3 id="JTextField"><a href="#JTextField" class="headerlink" title="JTextField"></a>JTextField</h3><blockquote>
+<p>JTextField</p>
+<p>JTextField被称为文本框、文本域，用来输入或接收显示单行文本 信息（字符串）。</p>
+</blockquote>
+<p>当输入文本并按下回车键时，会发生触发<strong>ActionEvent</strong>事件，可以 通过<strong>ActionListener</strong>中的<strong>actionPerformed()方法</strong>对事件进行相应 处理。</p>
+<blockquote>
+<p>常用构造方法</p>
+</blockquote>
+<ul>
+<li>public JTextField(int n)  创建一个显示列数为n的空文本框 </li>
+<li>public JTextField(String text)  创建一个初始值为text的文本框</li>
+<li>public JTextField(String text, int n)  创建一个初始值为text、显示列数为n的文本框</li>
+</ul>
+<blockquote>
+<p> 常用成员方法</p>
+</blockquote>
+<ol>
+<li>int getColumns( ) 获取文本框的显示列数 </li>
+<li>public void setColumns(int Columns) 设置文本框的显示列数 </li>
+<li>public void <strong>setFont</strong>(Font font) 设置字体 </li>
+<li>public void <strong>setHorizontalAlignment</strong>(int align)  设置文本的水平对齐方式，align的有效值为 JTextField.LEFT、JTextField.CENTER、JTextField.RIGHT</li>
+<li>public String <strong>getText</strong>() 获取文本框中的文本 </li>
+<li>public void setEditable(Boolean b) 指定文本框是否可编辑，文本框<strong>默认是可编辑</strong>的 </li>
+<li>public void <strong>setText</strong>(String s)  设置文本框中的文本参数为s，文本框中原来的文本被清除</li>
+</ol>
+<h3 id="JPasswordField"><a href="#JPasswordField" class="headerlink" title="JPasswordField"></a>JPasswordField</h3><blockquote>
+<p>JPasswordField用来创建口令框对象。用户可以在此文本框中输 入字符，默认显示字符（回显字符）是“ * ”，而不是本身的字符， 用户也可以自己设置显示字符格式。</p>
+</blockquote>
+<blockquote>
+<p>常用构造方法</p>
+</blockquote>
+<ol>
+<li>JPasswordField（）创建一个空初始值JPasswordField对象 </li>
+<li>JPasswordField（int col） 创建一个显示列数为col的JPasswordField对象 </li>
+<li>JPasswordField（String text） 创建一个初始值为text的JPasswordField对象</li>
+<li>JPasswordField（String text, int col） 创建一个初始值为text、显示列数为col的JPasswordField对象</li>
+</ol>
+<blockquote>
+<p>常用成员方法</p>
+</blockquote>
+<ol>
+<li>String getPassword() 获取JPasswordField的文本内容。</li>
+<li>char getEchoChar() 获取密码的回显字符。 默认是”*“</li>
+<li>void setEchoChar(char c) 设置密码的回显字符。</li>
+</ol>
+<h3 id="JTextArea"><a href="#JTextArea" class="headerlink" title="JTextArea"></a>JTextArea</h3><blockquote>
+<p>JTextArea被称为文本区。它与文本框的主要区别是：文本框只能 输入&#x2F;输出一行文本，而文本区可以输入&#x2F;输出多行文本。</p>
+</blockquote>
+<p>JTextArea常与<strong>JScrollPane</strong>（滚动窗格）一起配合使用来实现文本 区水平或垂直的滚动（JTextArea本身并不处理滚动），具体实现 方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JTextArea textArea=<span class="keyword">new</span> <span class="title class_">JTextArea</span>( );</span><br><span class="line">JScrollPane scrollPane=<span class="keyword">new</span> <span class="title class_">JScrollPane</span>(textArea);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在文本区中输入完文本后，<strong>并不直接触发ActionEvent事件</strong>，可以 在JTextArea旁边<strong>设置一个按钮</strong>，通过按钮点击产生的<strong>ActionEvent</strong> 对输入的文本进行处理。</p>
+<blockquote>
+<p>常用构造方法</p>
+</blockquote>
+<ol>
+<li>public JTextArea（） 用默认构造方法创建一个空文本区。 </li>
+<li>public JTextArea（int rows,int cols） 用构造方法创建一个rows行、cols列的空文本区。 </li>
+<li>public JTextArea（String text） 用构造方法创建一个初始值为text的文本区。 </li>
+<li>public JTextArea（String text，int cols） 用构造方法创建一个初始值为text、显示列数为cols的文本区。 </li>
+<li>JTextArea(String text,int rows,int cols)  用构造方法创建一个初始值为text、显示行数为rows、列数为cols的 文本区。</li>
+</ol>
+<blockquote>
+<p>常用成员方法</p>
+</blockquote>
+<ol>
+<li>public void insert(String str,int pos)  在指定的位置pos插入指定的文本str。 </li>
+<li>public void append(String str)  将文本str添加到末尾。</li>
+<li>public void replaceRange(String str,int start,int end)  用字符串str替换文本区中从start开始到end的文字。</li>
+<li><strong>setLineWrap</strong>(Boolean b)  设置文本在文本区内的是否可以自动换行，<strong>默认为false。</strong></li>
+<li><strong>setWrapStyleWord</strong>(Boolean b)  设置以单词为界或以字符为界换行。</li>
+<li><strong>getCaretPosition</strong>() 获取文本区域中输入光标的位置。 </li>
+<li><strong>setCaretPosition</strong>(int position) 设置文本区域中输入光标的位置。</li>
+</ol>
+<h3 id="JButton-and-Label"><a href="#JButton-and-Label" class="headerlink" title="JButton and Label"></a>JButton and Label</h3><h3 id="选择性组件"><a href="#选择性组件" class="headerlink" title="选择性组件"></a>选择性组件</h3><blockquote>
+<p>JCheckBox</p>
+</blockquote>
+<blockquote>
+<p>JRadioButton</p>
+</blockquote>
+<blockquote>
+<p>JList</p>
+</blockquote>
+<blockquote>
+<p>JCombox</p>
+</blockquote>
+<blockquote>
+<p>JTabbedPane</p>
+</blockquote>
+<blockquote>
+<p>JScrollbar</p>
+</blockquote>
+<h2 id="图形界面常用容器"><a href="#图形界面常用容器" class="headerlink" title="图形界面常用容器"></a>图形界面常用容器</h2><blockquote>
+<p>JPanel 面板</p>
+</blockquote>
+<p>构造：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">JPanel</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JPanel</span>();</span><br><span class="line"></span><br><span class="line"><span class="type">JPanel</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JPanel</span>(LayoutManager layout);  <span class="comment">//可指定布局管理器</span></span><br></pre></td></tr></table></figure>
+
+<p>常用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+
+<p>应用步骤：使用JPanel创建面板，再向这个面板添加组 件，然后把这个面板添加到其它容器中。JPanel面板的 <strong>默认布局是FlowLayout布局</strong></p>
+<h2 id="图形界面对象上的布局"><a href="#图形界面对象上的布局" class="headerlink" title="图形界面对象上的布局"></a>图形界面对象上的布局</h2><p>当把组件添加到容器中时，希望控制组件在容器中 的位置，这就需要用到布局。</p>
+<p>容器可以使用方法： 容器对象引用变量.setLayout(布局对象);</p>
+<blockquote>
+<p>FlowLayout （(流式布局管理器）</p>
+</blockquote>
+<p><strong>JPanel、JApplet 的缺省布局管理器</strong></p>
+<p>FlowLayout是最简单的布局管理器，其管理方式为：<strong>按照组件添加的先后顺序，按指定对齐方式由左到右将组件排列在容器中，放满 一行再开始新的一行</strong>，它自动调用组件的getPreferredSize()方法， 使用组件的最佳尺寸来显示组件。</p>
+<p>容器的大小改变后，容器中各组件的布局也会随之发生改变：各组件的大小不变，但相对位置会发生变化。</p>
+<p>构造方法：</p>
+<ul>
+<li>public FlowLayout() <ul>
+<li>&#x2F;&#x2F;使用<strong>缺省居中对齐方式</strong>，组件间的水平和竖直间距为缺省值5个像素。</li>
+</ul>
+</li>
+<li>public FlowLayout(int alignment) <ul>
+<li>&#x2F;&#x2F;使用指定的对齐方式：FlowLayout.LEFT，FlowLayout.RIGHT， FlowLayout.Center等，水平和竖直间距为缺省值5象素。</li>
+</ul>
+</li>
+<li>public FlowLayout(int alignment, int horizontalGap, int verticalGap) <ul>
+<li>&#x2F;&#x2F;使用指定的对齐方式，水平和竖直间距为指定值。</li>
+</ul>
+</li>
+</ul>
+<p>重新设置对齐方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAlignment</span><span class="params">(<span class="type">int</span> alignment)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<blockquote>
+<p>BorderLayout (边框布局管理器)</p>
+</blockquote>
+<p><strong>JFrame 的缺省布局管理器</strong></p>
+<p><img src="/2023/06/08/JavaRe/image-20230608111254490.png" alt="image-20230608111254490"></p>
+<p>二种构造方法:</p>
+<ul>
+<li>public BorderLayout()<ul>
+<li>&#x2F;&#x2F;各组件间的水平和竖直间距为缺省值0个象素。</li>
+</ul>
+</li>
+<li>public BorderLayout(int horizontalGap, int verticalGap)  <ul>
+<li>&#x2F;&#x2F;各组件间的水平和竖直间距为指定值。</li>
+</ul>
+</li>
+</ul>
+<p>如果容器使用了BorderLayout布局方式，则容器<strong>用add()方法往其中 添加组件时必须指明该组件在容中的方位</strong>，否则组件将无法正确显示，</p>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="keyword">new</span> <span class="title class_">Button</span>(“West”),BorderLayout.WEST); </span><br><span class="line">add(<span class="keyword">new</span> <span class="title class_">Button</span>(“North”), BorderLayout.NORTH);</span><br></pre></td></tr></table></figure>
+
+<p>若没有指明放置位置，则表明为<strong>默认的“CENTER”</strong>方位。</p>
+<p><strong>如果想 在一个区域添加多个组件，则必须先在该区域放一个JPanel容器， 再将多个组件放在该JPanel容器中。</strong></p>
+<blockquote>
+<p>CardLayout</p>
+</blockquote>
+<blockquote>
+<p>GridLayout</p>
+</blockquote>
+<blockquote>
+<p>GridLayout</p>
+</blockquote>
+<blockquote>
+<p> BoxLayout</p>
+</blockquote>
+<h2 id="图像界面对象上的事件响应"><a href="#图像界面对象上的事件响应" class="headerlink" title="图像界面对象上的事件响应"></a>图像界面对象上的事件响应</h2><p>在Java中所有非GUI程序一般是按过程的先后顺序 执行的，Java GUI程序设计则是事件驱动的。在事件驱 动程序设计中，用户点击按钮、移动鼠标等行为都可以 引起一些反应（引发某些事件）。引发一个事件便执行相应的代码。</p>
+<h1 id="Java-I-x2F-O流"><a href="#Java-I-x2F-O流" class="headerlink" title="Java I&#x2F;O流"></a>Java I&#x2F;O流</h1><h2 id="问题汇总"><a href="#问题汇总" class="headerlink" title="问题汇总"></a>问题汇总</h2><h3 id="FileInputStream和FileReader区别"><a href="#FileInputStream和FileReader区别" class="headerlink" title="FileInputStream和FileReader区别"></a>FileInputStream和FileReader区别</h3><p><code>FileInputStream</code>和<code>FileReader</code>是Java中用于读取文件数据的两个类，它们的主要区别如下：</p>
+<ol>
+<li>数据类型：<code>FileInputStream</code>以<strong>字节</strong>为单位读取文件数据，而<code>FileReader</code>以<strong>字符</strong>为单位读取文件数据。</li>
+<li>字符编码：<code>FileInputStream</code>是字节流，它以原始的字节形式读取文件内容。而<code>FileReader</code>是字符流，它会根据指定的字符编码（或使用平台默认编码）将字节转换为字符。因此，<code>FileReader</code>适用于读取文本文件，可以直接读取和处理字符数据。</li>
+<li>使用场景：由于<code>FileInputStream</code>是字节流，它通常用于<strong>读取任意类型</strong>的文件数据，包括二进制文件（例如图像、音频等）或非文本文件。而<code>FileReader</code>是字符流，它更适合<strong>读取文本文件</strong>（例如.txt、.csv等），因为它能够将字节正确地转换为字符，以便进行字符处理和文本操作。</li>
+<li>读取方式：<code>FileInputStream</code>提供了以字节为单位的读取方法，例如<code>read()</code>方法可以读取一个字节或一组字节。而<code>FileReader</code>提供了以字符为单位的读取方法，例如<code>read()</code>方法可以读取一个字符或一组字符。</li>
+</ol>
+<h3 id="字节流？字符流？"><a href="#字节流？字符流？" class="headerlink" title="字节流？字符流？"></a>字节流？字符流？</h3><p>字节流（Byte Stream）和字符流（Character Stream）是Java I&#x2F;O操作中的两种基本流类型，它们主要区别如下：</p>
+<ol>
+<li>字节流（Byte Stream）：<ul>
+<li>字节流以字节为单位进行读写操作，数据以字节的形式进行传输。</li>
+<li><code>InputStream</code>和<code>OutputStream</code>是字节流的基本抽象类。</li>
+<li>字节流适用于处理<strong>二进制数据或非文本数据</strong>，如图像、音频、视频等文件。</li>
+</ul>
+</li>
+<li>字符流（Character Stream）：<ul>
+<li>字符流以字符为单位进行读写操作，数据以字符的形式进行传输。</li>
+<li><code>Reader</code>和<code>Writer</code>是字符流的基本抽象类。</li>
+<li>字符流适用于处理<strong>文本数据</strong>，如文本文件、配置文件等。</li>
+<li>字符流提供了字符编码解码的功能，可以将字节转换为字符或字符转换为字节，以处理不同的字符集和编码方式。</li>
+</ul>
+</li>
+</ol>
+<p>字符流和字节流之间的转换是通过字符编码（Character Encoding）和字节编码（Byte Encoding）来实现的。字符编码将字符映射为字节序列，而字节编码将字节序列解码为字符。</p>
+<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="创建线程的两种方法"><a href="#创建线程的两种方法" class="headerlink" title="创建线程的两种方法"></a>创建线程的两种方法</h2><ol>
+<li>继承Thread类：可以创建一个继承自Thread类的子类，并重写其<code>run()</code>方法来定义线程的执行逻辑。然后可以通过创建该子类的实例，调用<code>start()</code>方法来启动线程。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 线程的执行逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建并启动线程</span></span><br><span class="line"><span class="type">MyThread</span> <span class="variable">myThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread</span>();</span><br><span class="line">myThread.start();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>实现Runnable接口：可以创建一个实现Runnable接口的类，并实现其中的<code>run()</code>方法来定义线程的执行逻辑。然后可以将该实现类的实例作为参数传递给Thread类的构造方法，创建Thread对象，并调用该Thread对象的<code>start()</code>方法来启动线程。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyRunnable</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 线程的执行逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建并启动线程</span></span><br><span class="line"><span class="type">MyRunnable</span> <span class="variable">myRunnable</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyRunnable</span>();</span><br><span class="line"><span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(myRunnable);</span><br><span class="line">thread.start();</span><br></pre></td></tr></table></figure>
+
+
+
+<p>注意：这两种方法都可以用来创建线程，但<strong>推荐使用实现Runnable接口的方式</strong>，因为Java中的<strong>类只能单继承</strong>，如果已经继承了其他类，则无法再继承Thread类。而实现<strong>Runnable接口的方式可以更灵活地组织代码</strong>，实现接口的类还可以继续继承其他类。此外，使用<strong>Runnable接口还能更好地支持线程池和多线程共享资源</strong>的需求。</p>
+<h2 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h2><h3 id="什么是共享资源？"><a href="#什么是共享资源？" class="headerlink" title="什么是共享资源？"></a>什么是共享资源？</h3><p>共享资源是指在多线程编程中，多个线程可以<strong>同时访问和修改的数据、对象或资源</strong>。这些共享资源可以是程序中的全局变量、静态变量、共享数据结构、文件、网络连接、数据库连接等。</p>
+<p>在多线程编程中，引入同步机制是为了<strong>解决多线程访问共享资源时可能出现的数据竞争和不一致性问题</strong>。当多个线程并发地访问和修改共享资源时，如果没有适当的同步机制，就会导致以下问题：</p>
+<ol>
+<li>数据竞争（Data Race）：当多个线程同时读写共享资源时，由于线程执行的交叉和并发性，可能<strong>导致数据的不一致性和错误</strong>的结果。例如，一个线程在读取共享变量时，另一个线程正在修改它，这样就可能读到脏数据或不一致的状态。</li>
+<li>内存可见性问题：多个线程访问共享变量时，每个线程都有自己的本地缓存，这样就可能导致一个线程对共享变量的修改对其他线程不可见。这是由于现代计算机体系结构的缓存一致性机制导致的。</li>
+<li>线程间的协调和通信问题：在多线程环境下，有时需要线程之间进行协作和通信，以确保它们<strong>按照预期的顺序执行和共享信息</strong>。如果没有适当的同步机制，可能会导致线程之间的互相等待、死锁等问题。</li>
+</ol>
+<p>为了解决这些问题，Java提供了一些同步机制，其中最常用的是使用关键字<code>synchronized</code>和使用<code>Lock</code>接口及其实现类（如<code>ReentrantLock</code>）来实现互斥访问。这些同步机制可以确保在任意时刻只有一个线程可以访问共享资源，从而避免了数据竞争和不一致性问题。此外，还有一些其他的同步工具和技术，如使用<code>wait()</code>和<code>notify()</code>方法进行线程间的等待和通知、使用<code>volatile</code>关键字保证变量的可见性等。</p>
+<h3 id="如何实现线程同步？"><a href="#如何实现线程同步？" class="headerlink" title="如何实现线程同步？"></a>如何实现线程同步？</h3><h4 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h4><h4 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/12/SpringBoot/" rel="prev" title="SpringBoot">
+      <i class="fa fa-chevron-left"></i> SpringBoot
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter4-%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.</span> <span class="nav-text">Chapter4 类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.1.</span> <span class="nav-text">类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-number">2.1.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%9F%9F%EF%BC%9A%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E6%88%90%E5%91%98%E5%B8%B8%E9%87%8F"><span class="nav-number">2.1.2.</span> <span class="nav-text">数据域：成员变量和成员常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">2.1.3.</span> <span class="nav-text">局部变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">2.2.</span> <span class="nav-text">构造方法与对象的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="nav-number">2.2.2.</span> <span class="nav-text">对象实例化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.2.3.</span> <span class="nav-text">基本数据类型变量和引用类型变量的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%B8%85%E9%99%A4"><span class="nav-number">2.2.4.</span> <span class="nav-text">对象的清除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E5%80%BC"><span class="nav-number">2.3.</span> <span class="nav-text">参数传值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">2.4.</span> <span class="nav-text">实例变量和静态变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD"><span class="nav-number">2.5.</span> <span class="nav-text">方法重载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter9-GUI"><span class="nav-number">3.</span> <span class="nav-text">Chapter9 GUI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E6%A1%86%E6%9E%B6"><span class="nav-number">3.1.</span> <span class="nav-text">图形界面对象及其框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6JFrame"><span class="nav-number">3.1.1.</span> <span class="nav-text">框架JFrame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8F%9C%E5%8D%95"><span class="nav-number">3.1.2.</span> <span class="nav-text">菜单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">图形界面常用组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JTextField"><span class="nav-number">3.2.1.</span> <span class="nav-text">JTextField</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JPasswordField"><span class="nav-number">3.2.2.</span> <span class="nav-text">JPasswordField</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JTextArea"><span class="nav-number">3.2.3.</span> <span class="nav-text">JTextArea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JButton-and-Label"><span class="nav-number">3.2.4.</span> <span class="nav-text">JButton and Label</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%80%A7%E7%BB%84%E4%BB%B6"><span class="nav-number">3.2.5.</span> <span class="nav-text">选择性组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">图形界面常用容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AF%B9%E8%B1%A1%E4%B8%8A%E7%9A%84%E5%B8%83%E5%B1%80"><span class="nav-number">3.4.</span> <span class="nav-text">图形界面对象上的布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%95%8C%E9%9D%A2%E5%AF%B9%E8%B1%A1%E4%B8%8A%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%93%8D%E5%BA%94"><span class="nav-number">3.5.</span> <span class="nav-text">图像界面对象上的事件响应</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-I-x2F-O%E6%B5%81"><span class="nav-number">4.</span> <span class="nav-text">Java I&#x2F;O流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB"><span class="nav-number">4.1.</span> <span class="nav-text">问题汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FileInputStream%E5%92%8CFileReader%E5%8C%BA%E5%88%AB"><span class="nav-number">4.1.1.</span> <span class="nav-text">FileInputStream和FileReader区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E6%B5%81%EF%BC%9F%E5%AD%97%E7%AC%A6%E6%B5%81%EF%BC%9F"><span class="nav-number">4.1.2.</span> <span class="nav-text">字节流？字符流？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">创建线程的两种方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">5.2.</span> <span class="nav-text">线程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%B1%E4%BA%AB%E8%B5%84%E6%BA%90%EF%BC%9F"><span class="nav-number">5.2.1.</span> <span class="nav-text">什么是共享资源？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%EF%BC%9F"><span class="nav-number">5.2.2.</span> <span class="nav-text">如何实现线程同步？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">synchronized</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lock"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">Lock</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="KennyCaty"
+      src="/images/kennycaty.ico">
+  <p class="site-author-name" itemprop="name">KennyCaty</p>
+  <div class="site-description" itemprop="description">Hainan University of China</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KennyCaty</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

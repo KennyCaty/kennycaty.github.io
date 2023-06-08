@@ -31,8 +31,11 @@
 <meta property="og:image" content="http://example.com/2023/05/12/SpringBoot/image-20230512153049409.png">
 <meta property="og:image" content="http://example.com/2023/05/12/SpringBoot/image-20230512153011463.png">
 <meta property="og:image" content="http://example.com/2023/05/12/SpringBoot/RunMethod.png">
+<meta property="og:image" content="http://example.com/2023/05/12/SpringBoot/image-20230515025217275.png">
+<meta property="og:image" content="http://example.com/2023/05/12/SpringBoot/image-20230515082449819.png">
+<meta property="og:image" content="http://example.com/2023/05/12/SpringBoot/image-20230515082513395.png">
 <meta property="article:published_time" content="2023-05-12T04:11:45.000Z">
-<meta property="article:modified_time" content="2023-05-12T09:29:04.184Z">
+<meta property="article:modified_time" content="2023-05-25T04:31:35.490Z">
 <meta property="article:author" content="KennyCaty">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/05/12/SpringBoot/image-20230512135728902.png">
@@ -130,17 +133,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
 
   </li>
   </ul>
@@ -193,10 +196,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-05-12 12:11:45 / 修改时间：17:29:04" itemprop="dateCreated datePublished" datetime="2023-05-12T12:11:45+08:00">2023-05-12</time>
+              <time title="创建时间：2023-05-12 12:11:45" itemprop="dateCreated datePublished" datetime="2023-05-12T12:11:45+08:00">2023-05-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-25 12:31:35" itemprop="dateModified" datetime="2023-05-25T12:31:35+08:00">2023-05-25</time>
+              </span>
 
           
 
@@ -312,6 +321,156 @@
 <p>4、推断并设置main方法的定义类，找到运行的主类</p>
 <p><strong>Run方法</strong></p>
 <p><img src="/2023/05/12/SpringBoot/RunMethod.png" alt="RunMethod"></p>
+<h1 id="SpringBoot配置"><a href="#SpringBoot配置" class="headerlink" title="SpringBoot配置"></a>SpringBoot配置</h1><h2 id="yaml与properties"><a href="#yaml与properties" class="headerlink" title="yaml与properties"></a>yaml与properties</h2><p>Spring Boot使用一个全局的配置文件，配置文件名称是固定的</p>
+<ul>
+<li>application.properties<ul>
+<li>语法结构：key&#x3D;value</li>
+</ul>
+</li>
+<li>application.yaml<ul>
+<li>语法结构：key:空格value</li>
+</ul>
+</li>
+</ul>
+<h2 id="给属性赋值的方式"><a href="#给属性赋值的方式" class="headerlink" title="给属性赋值的方式"></a>给属性赋值的方式</h2><p>@Component &#x2F;&#x2F;注册bean</p>
+<p>@ConfigurationProperties作用：</p>
+<p><code>ConfigurationProperties(prefix = &quot;person&quot;)</code></p>
+<p>将配置文件中配置的每一个属性的值，映射到这个组件中：<strong>告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定参数prefix&#x3D;”person”</strong>:将配置文件中的person下面的所有属性一对应只有这个组件是容器中的组件，才能使用容器提供@ConfigurationProperties功能</p>
+<p>对比@Values</p>
+<p><img src="/2023/05/12/SpringBoot/image-20230515025217275.png" alt="image-20230515025217275"></p>
+<p>cp只需要写一次即可，vaue则需要每个字段都添加</p>
+<p>松散绑定：这个什么意思呢？比如我的yml中写的last-name,这个和lastName是一样的，-后面跟着的字母默认是大写的。这就是松散绑定</p>
+<p>JSR303数据校验，这个就是我们可以在字段是增加一层过滤器验证，可以保证数据的合法性</p>
+<p>复杂类型封装，yml中可以封装对象，使用@vaue就不支持</p>
+<p>结论：</p>
+<ul>
+<li>配置yml和配置propertiesi都可以获取到值，强烈推荐yml</li>
+<li>如果我们在某个业务中，只需要获取配置文件中的某个值，可以使用一下@value</li>
+<li>如果说，我们专门编写了一个JavaBean:来和配置文件进行映射，就直接使用@configurationProperties,不要犹豫！</li>
+</ul>
+<h3 id="JSR303校验"><a href="#JSR303校验" class="headerlink" title="JSR303校验"></a>JSR303校验</h3><p>JSR-303是 Java EE 6 中的一项子规范，叫做 Bean Validation，官方参考实现是hibernate Validator。用于对Java Bean中的值进行验证</p>
+<p><strong>1.Bean Validation 中内置的 constraint</strong></p>
+<p><img src="/2023/05/12/SpringBoot/image-20230515082449819.png" alt="image-20230515082449819"></p>
+<p><strong>2.Hibernate Validator 附加的 constraint</strong></p>
+<p><img src="/2023/05/12/SpringBoot/image-20230515082513395.png" alt="image-20230515082513395"></p>
+<p>示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;person&quot;)</span></span><br><span class="line"><span class="meta">@Validated</span> <span class="comment">//数据校验需要加这个</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyEmail</span> &#123;</span><br><span class="line">    <span class="meta">@Email(message = &quot;请输入正确的邮箱信息&quot;)</span>    <span class="comment">//如果校验错误会输出message</span></span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyEmail</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.email = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyEmail</span><span class="params">()</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> email;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.email = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;MyEmail&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;email=&#x27;&quot;</span> + email + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HelloWordApplicationTests</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    MyEmail email;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">contextLoads</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(email);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h1 id="SpringBoot-Web开发"><a href="#SpringBoot-Web开发" class="headerlink" title="SpringBoot Web开发"></a>SpringBoot Web开发</h1><p>SpringBoot帮我们做了什么？</p>
+<ul>
+<li><p>xxxxAutoConfiguration - 向容器中自动配置组件</p>
+</li>
+<li><p>xxxxProperties：自动配置类，装配配置文件中自定义的一些内容！</p>
+</li>
+</ul>
+<h2 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h2><p>在SpringBoot中，可以通过以下方式处理静态资源</p>
+<ul>
+<li>webjars      映射到域名:端口&#x2F;webjars&#x2F;</li>
+<li>public， static， &#x2F;**， resources    映射域名:端口&#x2F;</li>
+</ul>
+<p>优先级：resource &gt; static (默认) &gt; public</p>
+<h2 id="首页如何定制"><a href="#首页如何定制" class="headerlink" title="首页如何定制"></a>首页如何定制</h2><p>首页包括页签图标直接放在static里面即可</p>
+<h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><ul>
+<li>如果需要使用thymeleaf，只需要导入对应依赖<code>spring-boot-starter-thymeleaf</code>就可以了</li>
+</ul>
+<p>导入之后，将html放在templates即可</p>
+<ul>
+<li>在HTML的头部添加thymeleaf的约束</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span> <span class="attr">xmlns:th</span>=<span class="string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用th标签</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;msg&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:utext</span>=<span class="string">&quot;$&#123;msg&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">th:each</span>=<span class="string">&quot;user:$&#123;users&#125;&quot;</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;user&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">------------------------------</span><br><span class="line"><span class="tag">&lt;<span class="name">h4</span> <span class="attr">th:each</span>=<span class="string">&quot;user:$&#123;users&#125;&quot;</span>&gt;</span>[[$&#123;user&#125;]]<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>所有的htmL元素都可以被thymeLeaf替换接管：th：元素名</p>
+<h3 id="thymleaf语法"><a href="#thymleaf语法" class="headerlink" title="thymleaf语法"></a>thymleaf语法</h3><p>中文文档<a target="_blank" rel="noopener" href="https://fanlychie.github.io/post/thymeleaf.html">https://fanlychie.github.io/post/thymeleaf.html</a></p>
+<p>官方文档<a target="_blank" rel="noopener" href="https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html">https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html</a></p>
+<h3 id="提取公共页面"><a href="#提取公共页面" class="headerlink" title="提取公共页面"></a>提取公共页面</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th:fragment=&#x27;sidebar&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>插入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">th:insert=&quot;~&#123;path::sidebar&#125;&quot;</span><br><span class="line"></span><br><span class="line">th::replace=&quot;~&#123;path::sidebar&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h2 id="页面国际化"><a href="#页面国际化" class="headerlink" title="页面国际化"></a>页面国际化</h2><ol>
+<li>需要配置i18n文件</li>
+<li>如果需要在项目中进行按钮自动切换，我们需要自定义一个组件LocaleResolver</li>
+<li>记得将自己的组件配置到spring容器 <code>@Bean</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-sm&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/index(l=&#x27;zh_CN&#x27;)&#125;&quot;</span>&gt;</span>中文<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-sm&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/index(l=&#x27;en_US&#x27;)&#125;&quot;</span>&gt;</span>English<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyLocaleResolver</span> <span class="keyword">implements</span> <span class="title class_">LocaleResolver</span> &#123;</span><br><span class="line">    <span class="comment">//解析请求</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Locale <span class="title function_">resolveLocale</span><span class="params">(HttpServletRequest request)</span> &#123;</span><br><span class="line">        <span class="comment">//获取请求中的语言参数 &#x27;zh_CN&#x27;</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">language</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;l&quot;</span>);</span><br><span class="line">        <span class="type">Locale</span> <span class="variable">locale</span> <span class="operator">=</span> Locale.getDefault();<span class="comment">//如果没有就使用默认的</span></span><br><span class="line">        <span class="comment">//如果请求的链接携带了参数</span></span><br><span class="line">        <span class="keyword">if</span> (!StringUtils.isEmpty(language))&#123;</span><br><span class="line">            String[] split = language.split(<span class="string">&quot;_&quot;</span>);</span><br><span class="line">            <span class="comment">//国家，地区</span></span><br><span class="line">            locale = <span class="keyword">new</span> <span class="title class_">Locale</span>(split[<span class="number">0</span>], split[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> locale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyMVCConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"><span class="comment">//    public void addViewControllers(ViewControllerRegistry registry)&#123;</span></span><br><span class="line"><span class="comment">//        registry.addViewController(&quot;/&quot;).setViewName(&quot;index&quot;);</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> LocaleResolver <span class="title function_">localeResolver</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyLocaleResolver</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="处理404"><a href="#处理404" class="headerlink" title="处理404"></a>处理404</h2><p>在templates下建立error文件夹，把404.html页面放进去</p>
+<h2 id="前端ui"><a href="#前端ui" class="headerlink" title="前端ui"></a>前端ui</h2><ul>
+<li>elementUI</li>
+<li>anti-admin-vue</li>
+</ul>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="整合JDBC"><a href="#整合JDBC" class="headerlink" title="整合JDBC"></a>整合JDBC</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数据库配置</span></span><br><span class="line"><span class="attr">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">spring.datasource.password</span>=<span class="string">123456</span></span><br><span class="line"><span class="attr">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf-8</span></span><br><span class="line"><span class="attr">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br></pre></td></tr></table></figure>
+
+<p>连接数据库</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Web01ApplicationTests</span> &#123;</span><br><span class="line">    <span class="comment">//配置数据库后，会自动产生DataSource对象，可以自动注入数据源（配置）</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    DataSource dataSource;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">contextLoads</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        System.out.println(dataSource.getClass());</span><br><span class="line">        <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> dataSource.getConnection();</span><br><span class="line">        System.out.println(con);</span><br><span class="line">        con.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用<strong>JdbcTemplate</strong>，可以执行sql语句</p>
+<p>JdbcTemplate封装了很多对数据库的操作，拿来即用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">JdbcTemplate jdbcTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@GetMapping(&quot;/authors&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Map&lt;String,Object&gt;&gt; <span class="title function_">Authorlist</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from author&quot;</span>;</span><br><span class="line">        List&lt;Map&lt;String, Object&gt;&gt; maps = jdbcTemplate.queryForList(sql);</span><br><span class="line">        <span class="keyword">return</span> maps;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="DRUID"><a href="#DRUID" class="headerlink" title="DRUID"></a>DRUID</h2><p>Druid是阿里巴巴开源平台上一个数据库连接池实现，结合了C3PO、DBCP、PROXOOL等DB池的优<br>点，同时加入了日志监控。</p>
+<p>Dud可以很好的监控DB池连接和SQL的执行情况，天生就是针对监控而生的DB连接池。</p>
+<p>Spring Boot2.0以上默认使用Hikari数据源，可以说Hikari与Driud都是兰前Java Web上最优秀的<br>数据源，我们来重点介绍Spring Boot如何集成Druid数据源，如何实现数据库监控。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">thymeleaf:</span></span><br><span class="line">    <span class="attr">cache:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment">#//配置文件的真实位置</span></span><br><span class="line">  <span class="attr">messages:</span></span><br><span class="line">    <span class="attr">basename:</span> <span class="string">i18n.login</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">mvc:</span></span><br><span class="line">    <span class="attr">format:</span></span><br><span class="line">      <span class="attr">date:</span> <span class="string">yyyy-MM-dd</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">#数据库配置</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/booksystem?useUnicode=true&amp;characterEncoding=utf-8</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span>  <span class="comment">#指定druid数据源</span></span><br><span class="line">    <span class="attr">filters:</span> <span class="string">stat,</span> <span class="string">wall,</span> <span class="string">log4j</span>  <span class="comment">#监控统计，防止sql注入，日志</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DruidConfig</span> &#123;</span><br><span class="line">    <span class="meta">@ConfigurationProperties(prefix = &quot;spring.datasource&quot;)</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DataSource <span class="title function_">druidDataSource</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DruidDataSource</span>();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//后台监控</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> ServletRegistrationBean <span class="title function_">StatViewServlet</span><span class="params">()</span>&#123;</span><br><span class="line">        ServletRegistrationBean&lt;StatViewServlet&gt; bean = <span class="keyword">new</span> <span class="title class_">ServletRegistrationBean</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">StatViewServlet</span>(), <span class="string">&quot;/druid/*&quot;</span>);</span><br><span class="line">        <span class="comment">//后台需要有人登录，账号密码</span></span><br><span class="line">        HashMap&lt;String,String &gt; initParameters = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//增加配置</span></span><br><span class="line">        initParameters.put(<span class="string">&quot;loginUsername&quot;</span>,<span class="string">&quot;admin&quot;</span>);</span><br><span class="line">        initParameters.put(<span class="string">&quot;loginPassword&quot;</span>,<span class="string">&quot;123456&quot;</span>);   <span class="comment">///登陆的key是固定的</span></span><br><span class="line">        <span class="comment">//允许谁可以访问</span></span><br><span class="line">        initParameters.put(<span class="string">&quot;allow&quot;</span>,<span class="string">&quot;&quot;</span>);  <span class="comment">//为空表示所有人可以访问</span></span><br><span class="line">        <span class="comment">//禁止谁能访问 initParameters.put(&quot;name&quot;,&quot;192.168.xx.xx&quot;)</span></span><br><span class="line"></span><br><span class="line">        bean.setInitParameters(initParameters); <span class="comment">//设置初始化参数</span></span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//filter</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> FilterRegistrationBean <span class="title function_">webStatFilter</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">FilterRegistrationBean</span> <span class="variable">bean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FilterRegistrationBean</span>();</span><br><span class="line">        bean.setFilter(<span class="keyword">new</span> <span class="title class_">WebStatFilter</span>());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//可以过滤哪些请求</span></span><br><span class="line">        Map&lt;String,String&gt; initParameters = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        initParameters.put(<span class="string">&quot;exclusions&quot;</span>,<span class="string">&quot;*.js,*.css,/druid/*&quot;</span>);<span class="comment">//这些不进行统计</span></span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="整合mybatis"><a href="#整合mybatis" class="headerlink" title="整合mybatis"></a>整合mybatis</h2><p>整合包： mybatis-spring-boot-starter</p>
 
     </div>
 
@@ -330,7 +489,10 @@
     <a href="/2023/03/19/VUE/" rel="prev" title="VUE">
       <i class="fa fa-chevron-left"></i> VUE
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/08/JavaRe/" rel="next" title="JavaReview">
+      JavaReview <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -389,7 +551,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot与微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot"><span class="nav-number">1.1.</span> <span class="nav-text">SpringBoot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%EF%BC%88%E5%AE%98%E7%BD%91%E7%89%88%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">特征（官网版）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.</span> <span class="nav-text">微服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">第一个SpringBoot程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#helloworld"><span class="nav-number">2.1.</span> <span class="nav-text">helloworld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">2.2.</span> <span class="nav-text">小技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="nav-number">3.1.</span> <span class="nav-text">自动装配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">3.2.</span> <span class="nav-text">启动</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot与微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot"><span class="nav-number">1.1.</span> <span class="nav-text">SpringBoot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%EF%BC%88%E5%AE%98%E7%BD%91%E7%89%88%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">特征（官网版）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.</span> <span class="nav-text">微服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AASpringBoot%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">第一个SpringBoot程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#helloworld"><span class="nav-number">2.1.</span> <span class="nav-text">helloworld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">2.2.</span> <span class="nav-text">小技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="nav-number">3.1.</span> <span class="nav-text">自动装配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">3.2.</span> <span class="nav-text">启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">SpringBoot配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#yaml%E4%B8%8Eproperties"><span class="nav-number">4.1.</span> <span class="nav-text">yaml与properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E5%B1%9E%E6%80%A7%E8%B5%8B%E5%80%BC%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">给属性赋值的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSR303%E6%A0%A1%E9%AA%8C"><span class="nav-number">4.2.1.</span> <span class="nav-text">JSR303校验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot-Web%E5%BC%80%E5%8F%91"><span class="nav-number">5.</span> <span class="nav-text">SpringBoot Web开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="nav-number">5.1.</span> <span class="nav-text">静态资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E9%A1%B5%E5%A6%82%E4%BD%95%E5%AE%9A%E5%88%B6"><span class="nav-number">5.2.</span> <span class="nav-text">首页如何定制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E"><span class="nav-number">5.3.</span> <span class="nav-text">模板引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#thymleaf%E8%AF%AD%E6%B3%95"><span class="nav-number">5.3.1.</span> <span class="nav-text">thymleaf语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%8F%96%E5%85%AC%E5%85%B1%E9%A1%B5%E9%9D%A2"><span class="nav-number">5.3.2.</span> <span class="nav-text">提取公共页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E5%9B%BD%E9%99%85%E5%8C%96"><span class="nav-number">5.4.</span> <span class="nav-text">页面国际化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86404"><span class="nav-number">5.5.</span> <span class="nav-text">处理404</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AFui"><span class="nav-number">5.6.</span> <span class="nav-text">前端ui</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">6.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E5%90%88JDBC"><span class="nav-number">6.1.</span> <span class="nav-text">整合JDBC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRUID"><span class="nav-number">6.2.</span> <span class="nav-text">DRUID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E5%90%88mybatis"><span class="nav-number">6.3.</span> <span class="nav-text">整合mybatis</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -405,20 +567,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
