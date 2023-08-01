@@ -2,11 +2,8 @@
 title: SpringBoot
 date: 2023-05-12 12:11:45
 tags:
+notshow: true
 ---
-
-
-
-
 
 
 
@@ -42,7 +39,12 @@ tags:
 1. SpringBoot Starter：他将常用的依赖分组进行了整合，将其合并到一个依赖中，这样就可以一次性添加到项目的Maven或Gradle构建中。
 2. 使编码变得简单，SpringBoot采用 JavaConfig的方式对Spring进行配置，并且提供了大量的注解，极大的提高了工作效率，比如**@Configuration**和**@bean**注解结合，基于**@Configuration**完成类扫描，基于**@bean**注解把返回值注入**IOC**容器。
 3. 自动配置：SpringBoot的自动配置特性利用了Spring对条件化配置的支持，合理地推测应用所需的bean并自动化配置他们。
-4. 使部署变得简单，SpringBoot内置了三种Servlet容器，Tomcat，Jetty, undertow.我们只需要一个Java的运行环境就可以跑SpringBoot的项目了，SpringBoot的项目可以打成一个jar包。
+4. 使部署变得简单，SpringBoot内置了三种Servlet容器，Tomcat，Jetty, Undertow.（无需部署war包）我们只需要**一个Java的运行环境**就可以跑SpringBoot的项目了，SpringBoot的项目可以打成一个jar包。
+5. **场景启动器（starter）**
+6. 提供**生产级特性**：如监控指标，健康检查，外部化配置等
+   1. 监控指标，健康检查（k8s） 
+
+7. 无代码生成，无xml
 
 ## 微服务
 

@@ -1,7 +1,9 @@
 ---
 title: JavaReview
+date: 2023-06-02 12:00:00
 tags: java
 categories: 课程复习
+hidden: true
 ---
 
 java期末复习随缘笔记

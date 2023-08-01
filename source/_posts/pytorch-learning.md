@@ -1,5 +1,5 @@
 ---
-title: test
+title: pytorch-learning
 date: 2023-07-06 18:51:30
 tags: DeepLearning
 categories: DeepLearning
