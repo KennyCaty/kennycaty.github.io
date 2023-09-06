@@ -3,6 +3,7 @@ title: JavaWeb
 date: 2023-07-31 12:00:00
 tags: java web
 categories: JavaWeb
+hidden: true
 ---
 
 
@@ -18,7 +19,7 @@ JavaWeb
 > 前端
 
 * HTML、CSS、JavaScript
-* Vue、Element、Nginx
+* Vue、Element、Nginx（打包部署）
 
 
 

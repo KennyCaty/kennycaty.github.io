@@ -449,6 +449,10 @@ v-on:  简写  @
 
 
 * 如何传递参数？
+* plt.figure(figsize=(5,3))
+  x = np.linspace(1,10,10)
+  y = np.array([60,30,20,90,40,60,50,80,70,30])
+  plt.plot(x, y, 'r', ls='--', marker='o')
 
 在绑定的函数名后加 (arg)
 
@@ -1820,7 +1824,7 @@ new Vue({
 
 
 
-# 第一点五章：Vue生命周期
+## 1.15 Vue生命周期
 
 
 
@@ -3175,6 +3179,139 @@ this.$bus.$emit('xxx',this.demo)
 
 # 第五章：vuex
 
+
+
+
+
+
+
+
+
 # 第六章：vue-router
 
+* 安装
+
+```bash
+npm intall vue-router
+```
+
+
+
+* 定义路由，在router文件夹下的index.js
+
+```js
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/about',
+    name: 'about',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  }
+]
+```
+
+两种方式都可以，区别在于：
+
+* 第一种方式直接加载完成
+* 第二种方式（懒加载），只有在跳转时才会加载
+
+
+
+
+
+* 使用路由：
+
+在需要添加路由的地方使用 router-link
+
+```html
+<router-link to="/about">关于</router-link>
+```
+
+
+
+在需要展示视图的地方使用 router-view，会自动渲染
+
+```html
+<router-view></router-view>
+```
+
+
+
+
+
+
+
+
+
+
+
 # 第七章：Vue UI组件库
+
+## ElementUI
+
+官网：[Element - 网站快速成型工具](https://element.eleme.cn/#/zh-CN)
+
+
+
+### 快速入门
+
+### 安装
+
+安装ElementUI组件库（在当前目录下）
+
+* npm方式（推荐）
+
+```bash
+npm i element-ui -S
+```
+
+
+
+* CDN方式
+
+```html
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+```
+
+
+
+### 引入
+
+* 引入Element组件库，在 main.js 中写入以下内容：
+
+```js
+import Vue from 'vue';
+import ElementUI from 'element-ui';               //  1
+import 'element-ui/lib/theme-chalk/index.css';    //  2
+import App from './App.vue';
+
+Vue.use(ElementUI);                               //  3
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+```
+
+
+
+
+
+
+
+### 使用
+
+访问官网，复制代码使用
+
+官网：[Element - 网站快速成型工具](https://element.eleme.cn/#/zh-CN)
+
