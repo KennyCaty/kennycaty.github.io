@@ -415,7 +415,17 @@ def child():
 
 
 
-# 加载静态文件url_for
+# url_for
+
+语法：
+
+```python
+url_for('蓝图名称.视图函数名称')
+
+url_for('视图函数名称')
+```
+
+
 
 使用 url for 语法
 
@@ -508,10 +518,10 @@ result:
 
 
 
+
+
 # flask重定向和错误
 
-> 注意：重定向指的是重定向到某一个“路由函数”！！
->
 > 下面的例子：
 >
 > * 如果请求方式是POST，判断username是否等于admin，如果是则重定向到success（登陆成功），不是则抛出401（没有权限）
@@ -543,7 +553,7 @@ def login():
         else:
             abort(401)
     elif request.method == 'GET':
-        return redirect(url_for('index'))     
+        return redirect('/')                      # 重定向到某一个 ‘路由’
 
 @app.route('/login/success')
 def success():
@@ -560,6 +570,115 @@ index:
     <p><input type="submit" value="登录"></p>
 </form>
 ```
+
+
+
+
+
+# Request和Response
+
+## Request
+
+request对象的属性：
+
+| 属性        | 功能                  |
+| ----------- | --------------------- |
+| url         | 完整请求地址          |
+| base_url    | 去掉GET参数的URL      |
+| host_url    | 只有主机和端口号的URL |
+| path        | 路由中的路径          |
+| method      | 请求方法              |
+| remote_addr | 请求的客户端地址      |
+| args        | GET请求参数           |
+| form        | POST请求参数          |
+| files       | 文件上传              |
+| headers     | 请求头                |
+| cookies     | 请求中的cookie        |
+
+
+
+
+
+
+
+
+
+## Response
+
+
+
+响应的几种方式：
+
+1. 返回字符串
+
+```python
+@app.route('/')
+def index():
+    return "hello"
+```
+
+
+
+2. 模板渲染
+
+这个就需要有html
+
+```python
+@app.route('/')
+def index():
+    return render_template('index.html' [,arg1=xx])
+```
+
+
+
+
+
+3. 返回 Json 数据（**前后端分离**）
+
+> 直接返回字典
+
+```python
+@app.route('/')
+def index():
+    data = {'name':'张三', 'age': 18}
+    return data
+```
+
+```json
+{
+	"age": 18,
+    "name": "张三"
+}
+```
+
+
+
+> 做一个序列化，将字典转成字符串
+
+```python
+@app.route('/')
+def index():
+    data = {'name':'张三', 'age': 18}
+    return jsonify(data)
+```
+
+
+
+
+
+
+
+> 自定义Response对象
+
+```python
+html = render_template('index.html')
+res = make_response(html)
+# res = Response(html)
+```
+
+
+
+
 
 
 

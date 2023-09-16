@@ -1,16 +1,9 @@
 ---
-title: Ubuntu20安装docker（2023）
+title: Ubuntu20安装docker
 date: 2023-08-30 14:16:53
-tags:Docker
+tags: Docker
+categories: Docker
 ---
-
-
-
-
-
-
-
-
 
 看了很多安装docker并配置阿里云镜像的教程，许多都有问题，记录一下没问题的安装过程
 
