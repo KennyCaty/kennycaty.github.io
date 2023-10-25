@@ -2,6 +2,7 @@
 title: Langchain-PDFGPT
 date: 2023-08-12 12:51:48
 tags: Langchain
+categories: Langchain
 description: 什么是Langchain？ 从PDFGPT出发， 理解Langchain在干什么
 ---
 

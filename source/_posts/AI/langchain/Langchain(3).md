@@ -1,7 +1,8 @@
 ---
 title: Langchain（三）：Chain
 date: 2023-08-17 16:50:33
-tags:
+tags: Langchain
+categories: Langchain
 description: LangChain中最重要的关键构建块 Chain
 ---
 
@@ -14,6 +15,8 @@ reference：
 
 
 # Chain
+
+链允许我们将多个组件组合在一起以创建一个单一的、连贯的应用程序。例如，我们可以创建一个链，它接受用户输入，使用 PromptTemplate 对其进行格式化，然后将格式化的响应传递给 LLM。我们可以通过将多个链组合在一起，或者将链与其他组件组合来构建更复杂的链。
 
 Chain通常将LLM与Prompt一起结合使用
 
@@ -35,9 +38,97 @@ _ = load_dotenv(find_dotenv()) # read local .env file
 
 
 
+# 开始使用
+
+这`LLMChain`是最基本的构建区块链。它采用提示模板，根据用户输入对其进行格式化，然后返回LLMs的响应。
+
+首先创建一个提示模板。
+
+```python
+from langchain.llms import OpenAI
+from langchain.prompts import PromptTemplate
+
+llm = OpenAI(temperature=0.9)
+prompt = PromptTemplate(
+    input_variables=["product"],
+    template="What is a good name for a company that makes {product}?",
+)
+```
+
+创建一个非常简单的链，它将接受用户输入，用它格式化提示，然后将其发送给LLMs。
+
+```python
+from langchain.chains import LLMChain
+chain = LLMChain(llm=llm, prompt=prompt)
+
+# Run the chain only specifying the input variable.
+print(chain.run("colorful socks"))
+```
+
+> ​    Colorful Toes Co.
+
+最直接的一种是使用`__call__`，可以不用调用run()
+
+```python
+# 直接调用__call__
+chain("colorful socks")
+```
+
+> {'product': 'colorful socks', 'text': '\n\nRainbow Sock Co.'}
+
+默认情况下，`__call__`返回输入和输出键值。`return_only_outputs`您可以通过设置将其配置为仅返回输出键值`True`。
+
+```python
+# 直接调用__call__
+chain("colorful socks",return_only_outputs=True) 
+```
+
+> {'text': '\n\nSplashy Socks.'}
 
 
-我们读入一个csv文件
+
+如果`Chain`只输出一个输出键（即其中只有一个元素`output_keys`），则可以使用`run`方法。请注意，`run`输出的是**字符串**而不是字典。
+
+```python
+chain.output_keys
+# ['text']
+```
+
+
+
+
+
+
+
+如果有多个变量，可以使用字典一次性输入它们。
+
+```python
+prompt = PromptTemplate(
+    input_variables=["company", "product"],
+    template="What is a good name for {company} that makes {product}?",
+)
+chain = LLMChain(llm=llm, prompt=prompt)
+print(chain.run({
+    'company': "ABC Startup",
+    'product': "colorful socks"
+    }))
+```
+
+>  Socktopia Colourful Creations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+我们读入一个csv文件，用于之后的示例
 
 ```python
 import pandas as pd

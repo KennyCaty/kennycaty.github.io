@@ -3,7 +3,7 @@ title: Langchain（一）：第一个LangChain程序，提示模板和解析器
 date: 2023-08-17 12:58:38
 tags: Langchain
 categories: Langchain
-description: LangChain的Model， Prompts和Parsers
+description: LangChain的Model， Prompts和Parsers（快速开始）
 ---
 
 
@@ -66,9 +66,11 @@ LangChain是一个用于构建LLM应用的开源开发框架，目前有Python�
 
 >  以下代码在**jupyter**中运行
 
-## 引出模板
+## Chat API : OpenAI
 
 由普通调用GPT 引出Langchain调用GPT
+
+> 直接调用OpenAI的API
 
 ```python
 import openai
@@ -150,6 +152,8 @@ response
 
 
 想象一下，如果有不同的客户用不同语言写邮件，英语法语德语等，需要生成一系列的提示来生成这样的翻译
+
+
 
 **Langchain如何更优雅的做到这一点？**
 
@@ -261,11 +265,17 @@ Langchain还内置了一些常用的提示，比如summarization，question answ
 
 
 
+
+
+
+
+
+
 > Output Parsing输出解析
 
 使用模板能提示语言模型按照特定格式生成输出，比如使用特定关键词
 
-下面的示例使用的时Langchain默认的模型思维链推理框架：**ReAct框架**
+下面的示例使用的时Langchain默认的**模型思维链推理框架**：**ReAct框架**
 
 **思维链**：能够给予模型一个思考过程，以达到更精确的结论（在后面的**Agent**用途很大）
 
@@ -453,7 +463,129 @@ output_dict.get('delivery_days')
 
 
 
+# LLMs
+
+语言模型有两种类型，在LangChain中称为：
+
+- LLM：这是一种语言模型，它将字符串作为输入并返回字符串
+- ChatModels：这是一个语言模型，它将消息列表作为输入并返回消息
+
+LLM 的输入/输出简单易懂——一个字符串。 但是 ChatModels 呢？ 输入是 ChatMessage 列表，输出是单个 ChatMessage。 ChatMessage 有两个必需的组件：
+
+- content: This is the content of the message.
+- role: This is the role of the entity from which the ChatMessage is coming from.
+
+LangChain提供了几个对象来方便区分不同的角色：
+
+- HumanMessage: A ChatMessage coming from a human/user.
+- AIMessage: A ChatMessage coming from an AI/assistant.
+- SystemMessage: A ChatMessage coming from the system.
+- FunctionMessage: A ChatMessage coming from a function call.
+
+如果这些角色听起来都不合适，还有一个 ChatMessage 类，您可以在其中手动指定角色。
+
+
+
+LangChain 为两者提供了标准接口，但了解这种差异对于为给定语言模型构建提示很有用。
+
+LangChain提供的标准接口有两种方法：
+
+- predict: 接受一个字符串，返回一个字符串
+- predict_messages: 接收消息列表，返回消息。
+
+让我们看看如何使用这些不同类型的模型和这些不同类型的输入。 首先，我们导入一个 LLM 和一个 ChatModel。
+
+
+
+```python
+from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
+
+llm = OpenAI()
+chat_model = ChatOpenAI()
+
+llm.predict("hello")
+
+chat_model.predict("hi!")
+```
+
+
+
+OpenAI 和 ChatOpenAI 对象基本上只是配置对象。 您可以使用温度等参数初始化它们，然后传递它们。
+
+接下来，让我们使用预测方法来运行字符串输入。
+
+```python
+text = "What would be a good company name \
+for a company that makes colorful socks?"
+
+llm.predict(text)
+
+chat_model.predict(text)
+```
+
+
+
+最后，让我们使用 Predict_messages 方法来运行消息列表。
+
+```python
+from langchain.schema import HumanMessage
+text = "What would be a good company name for a company \
+that makes colorful socks?"
+messages = [HumanMessage(content=text)]
+
+llm.predict_messages(messages)
+
+chat_model.predict_messages(messages)
+```
 
 
 
 
+
+# Prompt templates
+
+> 以下是官网对于template的说法
+
+大多数 LLMs  应用不会将用户输入直接传递到 LLMs 。 通常，他们会将用户输入添加到较大的文本中，称为提示模板，该文本提供有关当前特定任务的附加上下文。
+
+在前面的示例中，我们传递给模型的文本包含生成公司名称的指令。 对于我们的应用程序，如果用户**只需提供公司/产品的描述**，而不必担心提供模型说明，那就太好了。
+
+PromptTemplates 正好可以帮助解决这个问题！ 它们捆绑了从用户输入到完全格式化的提示的所有逻辑。 这可以非常简单地开始 - 例如，生成上述字符串的提示就是：
+
+```python
+from langchain.prompts import PromptTemplate
+
+prompt = PromptTemplate.from_template("What is a good name for a company that makes {product}?")
+# 或者用这种方式
+# prompt = PromptTemplate(
+#	input_variables=["product"],
+#	template="What is a good name for a company that makes {product}?")
+
+
+prompt.format(product="colorful socks")
+```
+
+> What is a good name for a company that makes colorful socks?
+
+
+
+PromptTemplates 还可用于**生成消息列表**。 在这种情况下，提示不仅包含有关内容的信息，还包含每条消息（其角色、在列表中的位置等）。这里，最常用的是 **ChatPromptTemplate** 是 ChatMessageTemplates 的列表。 每个 ChatMessageTemplate 都包含有关如何格式化该 ChatMessage 的说明 - 它的角色，以及它的内容。 让我们看看下面这个：
+
+```pythpn
+from langchain.prompts.chat import ChatPromptTemplate
+
+template = "You are a helpful assistant that translates {input_language} to {output_language}."
+human_template = "{text}"
+
+chat_prompt = ChatPromptTemplate.from_messages([
+    ("system", template),
+    ("human", human_template),
+])
+
+chat_prompt.format_messages(input_language="English", output_language="French", text="I love programming.")
+```
+
+
+
+ChatPromptTemplate 还可以通过其他方式构建 - 有关更多详细信息，请参阅提示部分。

@@ -696,9 +696,19 @@ from flask import Flask, make_response, request, session
 
 
 
+## Cookie
+
+Cookie本身由浏览器保存，通过Response将cookie写到浏览器上，下一次访问，浏览器会根据不同的规则，携带cookie
+
+
+
+
+
 > Cookie
 >
 > flask中的 **make_response **是一个用于创建响应对象的函数，它可以接受不同格式的参数，比如字符串、元组、字典等，并将其转换为flask.Response类的实例。flask.Response类是flask用于表示HTTP响应的默认类，它有一些属性和方法，比如status_code, headers, data, set_cookie等，可以用来设置响应的状态码、头部、数据、cookie等信息
+
+
 
 路由：
 
